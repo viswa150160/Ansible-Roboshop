@@ -24,11 +24,17 @@
   - name: check /app dir exists or not
     ansible.builtin.stat:
      path: /app
-    register: Directory
+    register: directory
 
   - name: print the directory stat
     ansible.builtin.debug:
-      msg: "output is:{{Directory}}"
+      msg: "output is:{{directory}}"
+
+  - when: directory.stat.exists == 'False'
+    name: create /app directory 
+    ansible.builtin.file:
+      path: /app
+      state: directory
      
 
 
