@@ -52,7 +52,34 @@
     args:
      chdir: /app
     
+  - name: copy catalogue service
+    ansible.builtin.copy:
+     src: Catalogue.Service
+     dest: /etc/systemd/system/catalogue.service
+  
+  - name: Deman reload
+    ansible.builtin.systemd:
+     daemon_reload: true
 
+  - name: copy mongo repo to yum.repos.d
+    ansible.builtin.copy:
+     src: mongodb.repo
+     dest: /etc/yum.repos.d/mongo.repo
+
+  - name: install mongodb
+    ansible.builtin.yum:
+     name: mongodb-org-shell
+     state: installed
+
+  - name: load catalogue data
+    ansible.builtin.command: mongo --host mongodb.devops2024.cloud </app/schema/catalogue.js
+
+  - name: restart catalogue
+    ansible.builtin.service:
+     name: catalogue
+     state: restarted
+     enabled: true
+    
 
 
 
