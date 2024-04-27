@@ -6,3 +6,6 @@ catalogue.devops2024.cloud
 
 [web]
 web.devops2024.cloud
+
+[redis]
+redis.devops2024.cloud
