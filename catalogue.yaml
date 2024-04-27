@@ -38,7 +38,7 @@
   
   - name: download the catalogue artifact
     ansible.builtin.get_url:
-     url: curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+     url: "curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip"
      dest: /tmp
      
 
